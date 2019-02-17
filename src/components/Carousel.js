@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import '../css/carousel.css';
 
 import edo1 from '../assets/carousel/52146404_2285307134836439_8626864219754594304_n.jpg';
@@ -8,7 +8,7 @@ import edo4 from '../assets/carousel/52599222_284619915538111_673712771817065676
 
 let rotateInterval, angle, firstRotate;
 
-class Carousel extends Component {
+class Carousel extends PureComponent {
     constructor() {
         super()
         this.state = {
