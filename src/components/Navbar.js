@@ -8,13 +8,13 @@ class Navbar extends Component {
     render() {
         return (
             <div className="navbar-flex">
-                <Link to="/">
+                <Link to="/react_tests">
                     HOME
                 </Link>
-                <Link to="/todo">
+                <Link to="/react_tests/todo">
                     TODO
                 </Link>
-                <Link to="/carousel">
+                <Link to="/react_tests/carousel">
                     CAROSUEL
                 </Link>
             </div>

@@ -10,7 +10,7 @@ class CarouselPage extends Component {
             <div>
                 <h2>This is React Carousel. Click on img to see more cool stuff.</h2>
                 <Carousel />
-                <Link to="/">
+                <Link to="/react_tests">
                     <button> Back to main page </button>
                 </Link>
             </div>
