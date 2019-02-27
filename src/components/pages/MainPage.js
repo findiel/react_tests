@@ -7,10 +7,10 @@ class MainPage extends Component {
         return (
             <div>
                 <h2>This is only my testing page. To see some cool stuff in REACT click one of buttons below.</h2>
-                <Link to="/todo">
+                <Link to="/react_tests/todo">
                     <button> Go to simple TODO list </button>
                 </Link>
-                <Link to="/carousel">
+                <Link to="/react_tests/carousel">
                     <button> Go to React Carousel </button>
                 </Link>
             </div>

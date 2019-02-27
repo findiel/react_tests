@@ -1,11 +1,11 @@
-.container{
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rotating-box {
+    margin: 0 auto;
     height: 20rem;
     width: 28rem;
     perspective: 170rem;
@@ -13,11 +13,11 @@
 
 .rotating-box__rb { 
     transform-style: preserve-3d;
-    position: relative;
 }
 
 .rotating-box__rb img {
     position: absolute;
+    top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 23rem;
@@ -28,20 +28,32 @@
 
 .rotating-box__front {
     transform: translateZ(14rem);
+    height: 20rem;
+    width: 28rem;
+    position: absolute;
 }
 
 .rotating-box__back {
     transform: rotateY(180deg) translateZ(14rem);
+    height: 20rem;
+    width: 28rem;
+    position: absolute;
 }
 
 .rotating-box__left {
     transform: rotateY(-90deg) translateX(-14rem);
     transform-origin: left;
+    height: 20rem;
+    width: 28rem;
+    position: absolute;
 }
 
 .rotating-box__right {
     transform: rotateY(90deg) translateX(14rem);
     transform-origin: right;
+    height: 20rem;
+    width: 28rem;
+    position: absolute;
 }
 
 .img-closer {

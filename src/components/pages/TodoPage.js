@@ -10,7 +10,7 @@ class TodoPage extends Component {
             <div>
                 <h2>This is simple react TODO list. Type any todo task and hit the button.</h2>
                 <Todo />
-                <Link to="/">
+                <Link to="/react_tests">
                     <button> Back to main page </button>
                 </Link>
             </div>

@@ -16,9 +16,9 @@ class App extends Component {
       <Router>
         <div>
           <Navbar />
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/todo" component={DisplayMessagesPage} />
-          <Route exact path="/carousel" component={CarouselPage} />
+          <Route exact path="/react_tests" component={MainPage} />
+          <Route exact path="/react_tests/todo" component={DisplayMessagesPage} />
+          <Route exact path="/react_tests/carousel" component={CarouselPage} />
           <Footer />
         </div>
       </Router>
