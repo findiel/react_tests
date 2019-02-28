@@ -9,68 +9,58 @@ import edo2 from '../assets/carousel/52263511_2128793170500870_62003832757776547
 import edo3 from '../assets/carousel/52347519_235610323913102_42497528867848192_n.jpg';
 import edo4 from '../assets/carousel/52599222_284619915538111_6737127718170656768_n.jpg';
 
-let rotationInterval, angle, firstRotateTimeout, box, rotateTimeout;
+let rotationInterval, angle, firstRotateTimeout, box;
 
 class Carousel extends PureComponent {
     constructor() {
         super()
         this.state = {
             isRotating: true,
-            rotationAngle: 0
+            rotationAngle: 90
         }
         this.box = React.createRef();
         this.handleRotate = this.handleRotate.bind(this);
         this.toggleCarousel = this.toggleCarousel.bind(this);
-        this.rotate = this.rotate.bind(this);
+        this.changeImg = this.changeImg.bind(this);
     }
 
     componentDidMount() {
-        this.rotate(90);
+        this.handleRotate(90);
     }
 
     componentDidUpdate() {
-        clearInterval(rotationInterval);
-        this.handleRotate();
+        this.handleRotate(90);
     }
 
     componentWillUnmount() {
         clearInterval(rotationInterval);
     }
 
-    rotate(direction) {
+    handleRotate(direction) {
+        console.log("rerendred: " + this.state.rotationAngle);
         clearInterval(rotationInterval);
         box = this.box.current;
         angle = this.state.rotationAngle;
-        this.setState({
-            rotationAngle: this.state.rotationAngle + direction
-        }, function() {
-            console.log("clicked: " + angle)
-            rotateTimeout = setTimeout(function() {
-                box.style.transform = `rotateY(${this.state.rotationAngle}deg)`;
-                box.style.transition = 'transform 2.5s ease'
-            }.bind(this), 300)
-        })
-    }
-
-    handleRotate() {
         if(this.state.isRotating) {
-            box = this.box.current;
+            firstRotateTimeout = setTimeout(function() {
+                box.style.transform = `rotateY(${angle}deg)`;
+                box.style.transition = 'transform 2.5s ease'
+                angle += direction;
+            }, 500)
             rotationInterval = setInterval(function() {
-                box.style.transform = `rotateY(${this.state.rotationAngle}deg)`;
+                box.style.transform = `rotateY(${angle}deg)`;
                 box.style.transition = 'transform 3s ease'
-                this.setState({
-                    rotationAngle: this.state.rotationAngle + 90
-                })
-            }.bind(this), 4500)
+                angle += direction;
+            }, 4500)
         } else {
             clearInterval(rotationInterval);
         }
     }
 
     toggleCarousel(e) {
-        clearInterval(rotationInterval)
         this.setState({
             isRotating: !this.state.isRotating,
+            rotationAngle: angle
         })
         if (this.state.isRotating) {
             e.target.style.transform = 'translateX(-50%) translateY(-50%) scale(1.5)';
@@ -81,10 +71,18 @@ class Carousel extends PureComponent {
         }
     }
 
+    changeImg(direction) {
+        this.setState({
+            rotationAngle:  angle
+        }, function() {
+            console.log("change img (f):" + this.state.rotationAngle);
+        })
+    }
+
     render() {
         return (
             <div className="container">
-                <Fab style={{ marginLeft: '.8rem'}} onClick={ () => this.rotate(-90)}>
+                <Fab style={{ marginLeft: '.8rem'}} onClick={ () => this.changeImg(-90)}>
                     <IconArrowLeft />
                 </Fab>
                 <div className="rotating-box">
@@ -95,7 +93,7 @@ class Carousel extends PureComponent {
                         <div className="rotating-box__right"><img src={edo4} alt="edo-photo4" onClick={this.toggleCarousel} data-image-index={3}/></div>
                     </div>
                 </div>
-                <Fab style={{ marginRight: '.8rem'}} onClick={ () => this.rotate(90)}>
+                <Fab style={{ marginRight: '.8rem'}} onClick={ () => this.changeImg(90)}>
                     <IconArrowRight />
                 </Fab>
             </div>
