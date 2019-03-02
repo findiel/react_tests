@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import '../css/carousel.css';
 import Fab from '@material-ui/core/Fab';
 import IconArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -11,47 +11,60 @@ import edo4 from '../assets/carousel/52599222_284619915538111_673712771817065676
 
 let rotationInterval, angle, firstRotateTimeout, box;
 
-class Carousel extends PureComponent {
+class Carousel extends Component {
     constructor() {
         super()
         this.state = {
             isRotating: true,
-            rotationAngle: 90
+            rotationAngle: 90,
+            direction: 'right'
         }
         this.box = React.createRef();
         this.handleRotate = this.handleRotate.bind(this);
         this.toggleCarousel = this.toggleCarousel.bind(this);
-        this.changeImg = this.changeImg.bind(this);
+        this.changeDirection = this.changeDirection.bind(this);
+        this.rotate = this.rotate.bind(this);
     }
 
     componentDidMount() {
-        this.handleRotate(90);
+        this.handleRotate();
     }
 
     componentDidUpdate() {
-        this.handleRotate(90);
+        clearInterval(rotationInterval);
+        console.log(this.state.direction);
+        this.handleRotate();
     }
 
     componentWillUnmount() {
         clearInterval(rotationInterval);
     }
 
-    handleRotate(direction) {
-        console.log("rerendred: " + this.state.rotationAngle);
-        clearInterval(rotationInterval);
+    rotate(side) {
         box = this.box.current;
         angle = this.state.rotationAngle;
+        console.log('angle before interval: ' + angle);
+        firstRotateTimeout = setTimeout(function() {
+            box.style.transform = `rotateY(${angle}deg)`;
+            box.style.transition = 'transform 2.5s ease'
+            angle += side;
+        }, 100)
+        rotationInterval = setInterval(function() {
+            console.log('angle while interval: ' + angle);
+            box.style.transform = `rotateY(${angle}deg)`;
+            box.style.transition = 'transform 3s ease'
+            angle += side;
+        }, 4500)
+    }
+
+    handleRotate() {
+        clearInterval(rotationInterval);
         if(this.state.isRotating) {
-            firstRotateTimeout = setTimeout(function() {
-                box.style.transform = `rotateY(${angle}deg)`;
-                box.style.transition = 'transform 2.5s ease'
-                angle += direction;
-            }, 500)
-            rotationInterval = setInterval(function() {
-                box.style.transform = `rotateY(${angle}deg)`;
-                box.style.transition = 'transform 3s ease'
-                angle += direction;
-            }, 4500)
+            if (this.state.direction === 'right') {
+                this.rotate(90);
+            } else {
+                this.rotate(-90);
+            }
         } else {
             clearInterval(rotationInterval);
         }
@@ -71,18 +84,26 @@ class Carousel extends PureComponent {
         }
     }
 
-    changeImg(direction) {
+    changeDirection(direction) {
+        clearInterval(rotationInterval);
+        console.log('angle while clicked: ' + angle);
+        if (this.state.direction === 'right' && direction === 'left') {
+            angle = angle - 180;
+        } else if (this.state.direction === 'left' && direction === 'right') {
+            angle = angle + 180;
+        }
         this.setState({
-            rotationAngle:  angle
+            rotationAngle: angle,
+            direction: direction
         }, function() {
-            console.log("change img (f):" + this.state.rotationAngle);
+            console.log("change img (f):" + this.state.rotationAngle + ", direction: " + this.state.direction);
         })
     }
 
     render() {
         return (
             <div className="container">
-                <Fab style={{ marginLeft: '.8rem'}} onClick={ () => this.changeImg(-90)}>
+                <Fab style={{ marginLeft: '.8rem'}} onClick={ () => this.changeDirection('left')}>
                     <IconArrowLeft />
                 </Fab>
                 <div className="rotating-box">
@@ -93,7 +114,7 @@ class Carousel extends PureComponent {
                         <div className="rotating-box__right"><img src={edo4} alt="edo-photo4" onClick={this.toggleCarousel} data-image-index={3}/></div>
                     </div>
                 </div>
-                <Fab style={{ marginRight: '.8rem'}} onClick={ () => this.changeImg(90)}>
+                <Fab style={{ marginRight: '.8rem'}} onClick={ () => this.changeDirection('right')}>
                     <IconArrowRight />
                 </Fab>
             </div>
