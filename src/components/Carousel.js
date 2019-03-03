@@ -32,7 +32,6 @@ class Carousel extends Component {
 
     componentDidUpdate() {
         clearInterval(rotationInterval);
-        console.log(this.state.direction);
         this.handleRotate();
     }
 
@@ -61,9 +60,9 @@ class Carousel extends Component {
         clearInterval(rotationInterval);
         if(this.state.isRotating) {
             if (this.state.direction === 'right') {
-                this.rotate(90);
-            } else {
                 this.rotate(-90);
+            } else {
+                this.rotate(90);
             }
         } else {
             clearInterval(rotationInterval);
@@ -88,9 +87,9 @@ class Carousel extends Component {
         clearInterval(rotationInterval);
         console.log('angle while clicked: ' + angle);
         if (this.state.direction === 'right' && direction === 'left') {
-            angle = angle - 180;
-        } else if (this.state.direction === 'left' && direction === 'right') {
             angle = angle + 180;
+        } else if (this.state.direction === 'left' && direction === 'right') {
+            angle = angle - 180;
         }
         this.setState({
             rotationAngle: angle,
@@ -108,10 +107,10 @@ class Carousel extends Component {
                 </Fab>
                 <div className="rotating-box">
                     <div className="rotating-box__rb" ref={this.box}>
-                        <div className="rotating-box__front"><img src={edo1} alt="edo-photo1" onClick={this.toggleCarousel} data-image-index={0} /></div>
-                        <div className="rotating-box__back"><img src={edo2} alt="edo-photo2" onClick={this.toggleCarousel} data-image-index={1} /></div>
-                        <div className="rotating-box__left"><img src={edo3} alt="edo-photo3" onClick={this.toggleCarousel} data-image-index={2} /></div>
-                        <div className="rotating-box__right"><img src={edo4} alt="edo-photo4" onClick={this.toggleCarousel} data-image-index={3}/></div>
+                        <div className="rotating-box__front"><img src={edo1} alt="edo-photo1" onClick={this.toggleCarousel} /></div>
+                        <div className="rotating-box__back"><img src={edo2} alt="edo-photo2" onClick={this.toggleCarousel} /></div>
+                        <div className="rotating-box__left"><img src={edo3} alt="edo-photo3" onClick={this.toggleCarousel} /></div>
+                        <div className="rotating-box__right"><img src={edo4} alt="edo-photo4" onClick={this.toggleCarousel} /></div>
                     </div>
                 </div>
                 <Fab style={{ marginRight: '.8rem'}} onClick={ () => this.changeDirection('right')}>

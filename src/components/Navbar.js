@@ -17,6 +17,9 @@ class Navbar extends Component {
                 <Link to="/react_tests/carousel">
                     CAROSUEL
                 </Link>
+                <Link to="/react_tests/tests">
+                    TESTS
+                </Link>
             </div>
         )
     }
