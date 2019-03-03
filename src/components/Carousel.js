@@ -16,7 +16,7 @@ class Carousel extends Component {
         super()
         this.state = {
             isRotating: true,
-            rotationAngle: 90,
+            rotationAngle: -90,
             direction: 'right'
         }
         this.box = React.createRef();
