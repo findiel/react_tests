@@ -15,7 +15,10 @@ class Navbar extends Component {
                     TODO
                 </Link>
                 <Link to="/react_tests/carousel">
-                    CAROSUEL
+                    CAROSUSEL
+                </Link>
+                <Link to="/react_tests/signature">
+                    SIGNATURE CANVAS
                 </Link>
                 <Link to="/react_tests/tests">
                     TESTS

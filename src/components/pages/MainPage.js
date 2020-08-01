@@ -13,6 +13,9 @@ class MainPage extends Component {
                 <Link to="/react_tests/carousel">
                     <button> Go to React Carousel </button>
                 </Link>
+                <Link to="/react_tests/signature">
+                    <button> Go to Signature Canvas</button>
+                </Link>
             </div>
         )
     }
