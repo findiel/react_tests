@@ -93,10 +93,29 @@ const SignatureCanvasComponent = () => {
     },[readySignatureCanvas])
 
     const handleCoppy = React.useCallback(() => {
-        if(navigator.clipboard && canvasState.toDataURL) {
-            return navigator.clipboard.writeText(canvasState.toDataURL)
-                .then(() => enqueueSuccessNotification({message: 'Coppied to clipboard.'}))
-                .catch(() => enqueueErrorNotification({message: "Smth gone wrong. Not coppied."}))
+        if(canvasState.toDataURL) {
+            if(navigator && navigator.clipboard) {
+                return navigator.clipboard.writeText(canvasState.toDataURL)
+                    .then(() => enqueueSuccessNotification({message: 'Coppied to clipboard.'}))
+                    .catch(() => enqueueErrorNotification({message: "Smth gone wrong. Not coppied."}))
+            } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+                var textarea = document.createElement("textarea");
+                textarea.textContent = canvasState.toDataURL;
+                textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    enqueueSuccessNotification({message: 'Coppied to clipboard.'})
+                    return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+                }
+                catch (e) {
+                    enqueueErrorNotification({message: "Smth gone wrong. Not coppied."})
+                    return false;
+                }
+                finally {
+                    document.body.removeChild(textarea);
+                }
+            }
         }
     },[navigator, canvasState])
 

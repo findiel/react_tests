@@ -7,6 +7,7 @@ import MainPage from './components/pages/MainPage';
 import CarouselPage from './components/pages/CarouselPage';
 import DisplayMessagesPage from './components/pages/TodoPage';
 import SignatureCanvasPage from './components/pages/SignatureCanvasPage';
+import PdfFormPage from './components/pages/PdfFormPage';
 import TestsPage from './components/pages/TestsPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/react_tests/todo" component={DisplayMessagesPage} />
             <Route exact path="/react_tests/carousel" component={CarouselPage} />
             <Route exact path="/react_tests/signature" component={SignatureCanvasPage} />
+            <Route exact path="/react_tests/pdf-form" component={PdfFormPage} />
             <Route exact path="/react_tests/tests" component={TestsPage} />
             <Footer />
           </SnackbarProvider>

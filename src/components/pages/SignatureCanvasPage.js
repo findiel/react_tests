@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import SignatureCanvas from '../SignatureCanvas';
 
 const SignatureCanvasPage = () => {
-
     return (
         <div>
             <h2>Welcome on Signature Canvas Page!</h2>
