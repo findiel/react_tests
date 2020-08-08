@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import Checkbox from '@material-ui/core/Checkbox';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -20,6 +19,10 @@ const styles = StyleSheet.create({
   dataHeader: {
     margin: 10,
   },
+  dataContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   data: {
     margin: 10,
     display: 'flex',
@@ -27,11 +30,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const MyPdf = ({fetchedData}) => {
-    
-    React.useEffect(() => {
-        console.log(fetchedData)
-    })
+const MyPdf = (data) => {
 
   return  (
     <Document>
@@ -43,13 +42,19 @@ const MyPdf = ({fetchedData}) => {
                 <Text>Data fetched from SWAPI:</Text>
             </View>
             <View style={styles.data}>
-                <Text>First Name</Text>
-                <Text>{fetchedData && fetchedData.name}</Text>
+                <Text>First Name: </Text>
+                {data && (
+                    <Text>{data.data.name}</Text>
+                )}
             </View>
             <View style={styles.data}>
-                {fetchedData && Object.keys(fetchedData).map(key => {
-                    return <Text key={key}>`${key}: ${fetchedData[key]}`</Text>
-                })}
+              <View style={styles.dataContainer}>
+                {data.data && Object.keys(data.data).map(key => {
+                    return (
+                        <Text key={key}>{`${key}: ${data.data[key]}`}</Text>
+                        )
+                      })}
+              </View>
             </View>
         </Page>
   </Document>
@@ -57,9 +62,11 @@ const MyPdf = ({fetchedData}) => {
 };
 
 MyPdf.propTypes = {
+  data: PropTypes.shape({})
 };
 
 MyPdf.defaultProps = {
+  data: {}
 };
 
 export default MyPdf;
