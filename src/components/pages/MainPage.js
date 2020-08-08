@@ -16,8 +16,8 @@ class MainPage extends Component {
                 <Link to="/react_tests/signature">
                     <button> Go to Signature Canvas</button>
                 </Link>
-                <Link to="/react_tests/pdf-form">
-                    <button> Go to PDF FORM</button>
+                <Link to="/react_tests/pdf-document-download">
+                    <button> Go to PDF document download</button>
                 </Link>
             </div>
         )

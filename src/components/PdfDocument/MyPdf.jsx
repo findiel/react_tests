@@ -44,18 +44,20 @@ const MyPdf = (data) => {
             <View style={styles.data}>
                 <Text>First Name: </Text>
                 {data && (
-                    <Text>{data.data.name}</Text>
+                    <Text>{data && data.data && data.data.name}</Text>
                 )}
             </View>
-            <View style={styles.data}>
-              <View style={styles.dataContainer}>
-                {data.data && Object.keys(data.data).map(key => {
-                    return (
-                        <Text key={key}>{`${key}: ${data.data[key]}`}</Text>
-                        )
-                      })}
+            {data && data.data && (
+              <View style={styles.data}>
+                <View style={styles.dataContainer}>
+                  {data.data && Object.keys(data.data).map(key => {
+                      return (
+                          <Text key={key}>{`${key}: ${data.data[key]}`}</Text>
+                          )
+                        })}
+                </View>
               </View>
-            </View>
+            )}
         </Page>
   </Document>
   )
