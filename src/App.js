@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/react_tests/todo" component={DisplayMessagesPage} />
             <Route exact path="/react_tests/carousel" component={CarouselPage} />
             <Route exact path="/react_tests/signature" component={SignatureCanvasPage} />
-            <Route exact path="/react_tests/pdf-document-download" component={PdfViewPage} />
+            <Route exact path="/react_tests/pdf-document-tests" component={PdfViewPage} />
             <Route exact path="/react_tests/tests" component={TestsPage} />
             <Footer />
           </SnackbarProvider>

@@ -38,8 +38,8 @@ const Navbar = () => {
                     </NavLink >
                 </Grid>
                 <Grid item>
-                    <NavLink className={classes.link} to="/react_tests/pdf-document-download">
-                        <Typography variant="body1">PDF Download</Typography>
+                    <NavLink className={classes.link} to="/react_tests/pdf-document-tests">
+                        <Typography variant="body1">PDF TESTS</Typography>
                     </NavLink >
                 </Grid>
                 <Grid item>

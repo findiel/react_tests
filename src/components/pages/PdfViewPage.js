@@ -1,18 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import PdfDocument from '../PdfDocument/PdfDocument';
+import PdfDownloadLink from '../PdfDownload/PdfDownloadLink';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    pdfDownloadLinkWrapper: {
+        padding: theme.spacing(3),
+    }
+}));
 
 const PdfViewPage = () => {
+    const classes = useStyles();
     return (
         <React.Fragment>
-            <h2>Welcome on PDF Form Page!</h2>
-            <Typography variant="body1"> PDF component should render a pdf with dynamic data from <a href="https://swapi.dev/documentation">SWAPI</a> and be able to save data from interactive pdf-form.</Typography>
+            <h2>Welcome on PDF Test Page!</h2>
             <Grid container direction="column" alignItems="center">
-                <Grid item>
-                    <PdfDocument />
-                </Grid>
+                <Typography variant="body1">1. PdfDownloadLink should let you download pdf with dynamic data from <a href="https://swapi.dev/documentation">SWAPI</a></Typography>
+                <div className={classes.pdfDownloadLinkWrapper}>
+                    <PdfDownloadLink />
+                </div>
                 <Grid item>
                     <Link to="/react_tests">
                         <button>

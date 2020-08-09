@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
-// Create styles
 const styles = StyleSheet.create({
   page: {
     backgroundColor: '#E4E4E4',
@@ -40,12 +39,6 @@ const MyPdf = (data) => {
             </View>
             <View style={styles.dataHeader}>
                 <Text>Data fetched from SWAPI:</Text>
-            </View>
-            <View style={styles.data}>
-                <Text>First Name: </Text>
-                {data && (
-                    <Text>{data && data.data && data.data.name}</Text>
-                )}
             </View>
             {data && data.data && (
               <View style={styles.data}>

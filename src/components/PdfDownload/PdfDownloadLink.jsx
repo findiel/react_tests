@@ -1,21 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { PDFDownloadLink  } from '@react-pdf/renderer';
+import SkywalkerPdf from './SkywalkerPdf';
 import { makeStyles } from '@material-ui/core/styles';
-import { PDFViewer, PDFDownloadLink, BlobProvider  } from '@react-pdf/renderer';
-import MyPdf from './MyPdf';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-  },
+  downloadButton: {
+      backgroundColor: '#3f51b5 !important',
+      border: 'none !important',
+      color: '#fff !important',
+      '&:hover': {
+        backgroundColor: '#303f9f !important',
+      }
+  }
 }));
 
 const PdfForm = () => {
   const classes = useStyles();
-
   const [fetchedData, setFetchedData] = React.useState(null);
     const [update] = React.useState(0);
     React.useEffect(() => {
-        //https://swapi.dev/api/people/1/
         fetch('https://swapi.dev/api/people/1/', {headers: { 'Content-Type': 'application/json'},})
             .then(response =>response.json())
             .then(data => {
@@ -28,13 +32,12 @@ const PdfForm = () => {
     fetchedData && console.log(fetchedData)
   
   return  (
-    <React.Fragment>
-      <div>
+      <Button variant="contained" color="primary">
         {
            fetchedData ? (
             <PDFDownloadLink 
-              document={<MyPdf data={fetchedData} />}
-              fileName="movielist.pdf"
+              document={<SkywalkerPdf data={fetchedData} />}
+              fileName="Skywalker.pdf"
               style={{
                 textDecoration: "none",
                 padding: "10px",
@@ -42,6 +45,7 @@ const PdfForm = () => {
                 backgroundColor: "#f2f2f2",
                 border: "1px solid #4a4a4a"
               }}
+              className={classes.downloadButton}
             >
               {({ blob, url, loading, error }) => 
                 loading ? "Loading document..." : "Download Pdf"
@@ -52,17 +56,8 @@ const PdfForm = () => {
             <div>Loading Pdf...</div>
           )
         }
-      </div>
-    </React.Fragment>
+      </Button>
   )
 };
 
-PdfForm.propTypes = {
-};
-
-PdfForm.defaultProps = {
-};
-
 export default PdfForm;
-
-//https://react-pdf.org/
