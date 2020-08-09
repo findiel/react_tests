@@ -2,13 +2,15 @@ import React from 'react';
 import { PDFDownloadLink  } from '@react-pdf/renderer';
 import SkywalkerPdf from './SkywalkerPdf';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   downloadButton: {
       backgroundColor: '#3f51b5 !important',
-      border: 'none !important',
+      border: '#3f51b5 1px !important',
+      borderRadius: '5px',
       color: '#fff !important',
+      width: '100% !important',
+      height: '100% !important',
       '&:hover': {
         backgroundColor: '#303f9f !important',
       }
@@ -32,7 +34,7 @@ const PdfForm = () => {
     fetchedData && console.log(fetchedData)
   
   return  (
-      <Button variant="contained" color="primary">
+      <div variant="contained" color="primary">
         {
            fetchedData ? (
             <PDFDownloadLink 
@@ -48,7 +50,7 @@ const PdfForm = () => {
               className={classes.downloadButton}
             >
               {({ blob, url, loading, error }) => 
-                loading ? "Loading document..." : "Download Pdf"
+                loading ? "Loading document..." : "Download PDF"
               }
             </PDFDownloadLink >
           )
@@ -56,7 +58,7 @@ const PdfForm = () => {
             <div>Loading Pdf...</div>
           )
         }
-      </Button>
+      </div>
   )
 };
 
