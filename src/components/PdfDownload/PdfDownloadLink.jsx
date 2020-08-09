@@ -31,8 +31,6 @@ const PdfForm = () => {
             .catch(error => console.log(error))
     },[update])
 
-    fetchedData && console.log(fetchedData)
-  
   return  (
       <div variant="contained" color="primary">
         {

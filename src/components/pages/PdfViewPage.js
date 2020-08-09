@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import PdfDownloadLink from '../PdfDownload/PdfDownloadLink';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import PdfCanvas from '../PdfCanvas/PdfCanvas';
 
 const useStyles = makeStyles(theme => ({
     pdfDownloadLinkWrapper: {
@@ -22,6 +23,7 @@ const PdfViewPage = () => {
                     <PdfDownloadLink />
                 </div>
                 <Typography variant="body1">2. PdfCanvas should render PDF file on canvas </Typography>
+                <PdfCanvas />
                 <Grid item>
                     <Link to="/react_tests">
                         <button>
