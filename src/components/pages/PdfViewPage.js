@@ -21,6 +21,7 @@ const PdfViewPage = () => {
                 <div className={classes.pdfDownloadLinkWrapper}>
                     <PdfDownloadLink />
                 </div>
+                <Typography variant="body1">2. PdfCanvas should render PDF file on canvas </Typography>
                 <Grid item>
                     <Link to="/react_tests">
                         <button>
