@@ -25,3 +25,7 @@ function PdfCanvas() {
   );
 }
 export default PdfCanvas;
+
+//TODO
+//https://github.com/Hopding/pdf-lib
+//https://pdfkit.org/
